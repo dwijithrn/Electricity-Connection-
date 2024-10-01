@@ -265,6 +265,7 @@ function App() {
 												false
 											)
 										}
+										className="wide-modal"
 									>
 										{selectedConnection && (
 											<ConnectionDetails
