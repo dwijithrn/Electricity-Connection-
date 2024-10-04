@@ -3,7 +3,7 @@ import "../styles/AddConnectionForm.css";
 
 const AddConnectionForm = ({ onAddConnection, onCancel }) => {
 	const [newConnection, setNewConnection] = useState({
-		ID: "", // Add this line
+		ID: "",
 		name: "",
 		gender: "Male",
 		district: "",
@@ -25,7 +25,7 @@ const AddConnectionForm = ({ onAddConnection, onCancel }) => {
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		if (name === "dateOfApplication") {
-			// Convert yyyy-mm-dd to dd/mm/yy
+			// converting the date to dd/mm/yy format
 			const [year, month, day] = value.split("-");
 			setNewConnection({
 				...newConnection,
@@ -36,6 +36,7 @@ const AddConnectionForm = ({ onAddConnection, onCancel }) => {
 		}
 	};
 
+	// validating the form
 	const validateForm = () => {
 		if (
 			!newConnection.ID ||
@@ -53,6 +54,7 @@ const AddConnectionForm = ({ onAddConnection, onCancel }) => {
 		return true;
 	};
 
+	// handling the form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (validateForm()) {
@@ -62,155 +64,11 @@ const AddConnectionForm = ({ onAddConnection, onCancel }) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="add-connection-form">
-			<label htmlFor="ID">ID:</label>
-			<input
-				type="text"
-				id="ID"
-				name="ID"
-				value={newConnection.ID}
-				onChange={handleInputChange}
-				required
-			/>
-
-			<label htmlFor="name">Name:</label>
-			<input
-				type="text"
-				id="name"
-				name="name"
-				value={newConnection.name}
-				onChange={handleInputChange}
-				required
-			/>
-
-			<label htmlFor="gender">Gender:</label>
-			<select
-				id="gender"
-				name="gender"
-				value={newConnection.gender}
-				onChange={handleInputChange}
-				required
-			>
-				<option value="Male">Male</option>
-				<option value="Female">Female</option>
-			</select>
-
-			<label htmlFor="district">District:</label>
-			<input
-				type="text"
-				id="district"
-				name="district"
-				value={newConnection.district}
-				onChange={handleInputChange}
-				required
-			/>
-
-			<label htmlFor="state">State:</label>
-			<input
-				type="text"
-				id="state"
-				name="state"
-				value={newConnection.state}
-				onChange={handleInputChange}
-				required
-			/>
-
-			<label htmlFor="pincode">Pincode:</label>
-			<input
-				type="number"
-				id="pincode"
-				name="pincode"
-				value={newConnection.pincode}
-				onChange={handleInputChange}
-				required
-			/>
-
-			<label htmlFor="ownership">Ownership:</label>
-			<select
-				id="ownership"
-				name="ownership"
-				value={newConnection.ownership}
-				onChange={handleInputChange}
-				required
-			>
-				<option value="INDIVIDUAL">Individual</option>
-				<option value="JOINT">Joint</option>
-			</select>
-
-			<label htmlFor="govtIdType">Govt ID Type:</label>
-			<select
-				id="govtIdType"
-				name="govtIdType"
-				value={newConnection.govtIdType}
-				onChange={handleInputChange}
-				required
-			>
-				<option value="">Select Govt ID Type</option>
-				<option value="AADHAR">Aadhar</option>
-				<option value="PAN">PAN</option>
-				<option value="VOTER_ID">Voter ID</option>
-				<option value="PASSPORT">Passport</option>
-			</select>
-
-			<label htmlFor="idNumber">ID Number:</label>
-			<input
-				type="text"
-				id="idNumber"
-				name="idNumber"
-				value={newConnection.idNumber}
-				onChange={handleInputChange}
-				required
-			/>
-
-			<label htmlFor="category">Category:</label>
-			<input
-				type="text"
-				id="category"
-				name="category"
-				value={newConnection.category}
-				onChange={handleInputChange}
-				required
-			/>
-
-			<label htmlFor="loadApplied">Load Applied (KV):</label>
-			<input
-				type="number"
-				id="loadApplied"
-				name="loadApplied"
-				value={newConnection.loadApplied}
-				onChange={handleInputChange}
-				max="200"
-				min="0"
-				required
-			/>
-
-			<label htmlFor="dateOfApplication">
-				Date of Application:
-			</label>
-			<input
-				type="date"
-				id="dateOfApplication"
-				name="dateOfApplication"
-				value={newConnection.dateOfApplication
-					.split("/")
-					.reverse()
-					.map((part, index) =>
-						index === 0
-							? "20" + part
-							: part.padStart(2, "0")
-					)
-					.join("-")} // Convert dd/mm/yy to yyyy-mm-dd for input
-				onChange={handleInputChange}
-				required
-			/>
-
-			<div className="form-submit">
-				<button type="submit">Add Connection</button>
-				<button type="button" onClick={onCancel}>
-					Cancel
-				</button>
-			</div>
-		</form>
+		// form for adding a new connection
+		<form
+			onSubmit={handleSubmit}
+			className="add-connection-form"
+		></form>
 	);
 };
 
