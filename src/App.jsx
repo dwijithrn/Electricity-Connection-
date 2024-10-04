@@ -9,6 +9,7 @@ import {
 	doc,
 } from "firebase/firestore";
 import { db } from "./firebase";
+// Import custom components
 import Header from "./Components/Header";
 import SearchBar from "./Components/SearchBar";
 import ConnectionList from "./Components/ConnectionList";
@@ -17,10 +18,12 @@ import DateRangeFilter from "./Components/DateRangeFilter";
 import Modal from "./Components/Modal";
 import VisualizationScreen from "./Components/VisualizationScreen";
 import AddConnectionPage from "./Components/AddConnectionPage";
+//importing css
 import "./App.css";
 import "./styles/components.css";
 
 function App() {
+	// setting states
 	const [user, setUser] = useState({ name: "User" });
 	const [connections, setConnections] = useState([]);
 	const [filteredConnections, setFilteredConnections] = useState([]);
@@ -30,6 +33,7 @@ function App() {
 	const [endDate, setEndDate] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
+	// fetching connections from firebase
 	useEffect(() => {
 		const fetchConnections = async () => {
 			try {
@@ -51,6 +55,7 @@ function App() {
 		fetchConnections();
 	}, []);
 
+	// adding a new connection to the database
 	const handleAddConnection = async (newConnection) => {
 		try {
 			const docRef = await addDoc(collection(db, "connections"), {
@@ -84,6 +89,7 @@ function App() {
 		}
 	};
 
+	// editing a connection
 	const handleEditConnection = (connection) => {
 		setSelectedConnection({
 			...connection,
@@ -91,11 +97,11 @@ function App() {
 			Applicant_Name: connection.Applicant_Name,
 			GovtID_Type: connection.GovtID_Type,
 			ID_Number: connection.ID_Number,
-			// ... other fields ...
 		});
 		setIsModalOpen(true);
 	};
 
+	// saving the edited connection
 	const handleSaveConnection = async (editedConnection) => {
 		try {
 			await updateDoc(
@@ -115,6 +121,7 @@ function App() {
 		}
 	};
 
+	// deleting a connection
 	const handleDeleteConnection = async (id) => {
 		try {
 			await deleteDoc(doc(db, "connections", id));
@@ -149,6 +156,7 @@ function App() {
 		setFilteredConnections(filtered);
 	};
 
+	// filtering connections by date
 	const handleDateFilter = (startDate, endDate) => {
 		const filtered = connections.filter((connection) => {
 			const applicationDate = new Date(
@@ -162,6 +170,7 @@ function App() {
 		setFilteredConnections(filtered);
 	};
 
+	// resetting the filters
 	const handleReset = () => {
 		setFilteredConnections(connections);
 		setSearchTerm("");
@@ -190,11 +199,13 @@ function App() {
 						</li>
 					</ul>
 				</nav>
+				{/* importing routes */}
 				<Routes>
 					<Route
 						path="/"
 						element={
 							<main>
+								{/* connection management section */}
 								<section className="connection-management">
 									<h2>
 										Connection
@@ -258,6 +269,7 @@ function App() {
 											handleDeleteConnection
 										}
 									/>
+									{/* modal for connection details */}
 									<Modal
 										isOpen={isModalOpen}
 										onClose={() =>
@@ -287,6 +299,7 @@ function App() {
 							</main>
 						}
 					/>
+					{/* route for adding a new connection */}
 					<Route
 						path="/add-connection"
 						element={
@@ -297,6 +310,7 @@ function App() {
 							/>
 						}
 					/>
+					{/* route for visualization screen */}
 					<Route
 						path="/visualization"
 						element={
