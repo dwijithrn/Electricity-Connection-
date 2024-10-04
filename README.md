@@ -66,10 +66,4 @@ This React application provides a user-friendly interface for managing electrica
 - Add Connection: Navigate to this page to add a new connection request.
 - Data Visualization: View graphical representations of connection data.
 
-## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
