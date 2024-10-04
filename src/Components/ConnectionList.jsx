@@ -84,6 +84,7 @@ const ConnectionList = ({
 					))}
 				</tbody>
 			</table>
+			{/* implementation of pagination */}
 			<div className="pagination">
 				<button onClick={prevPage} disabled={currentPage === 1}>
 					Previous

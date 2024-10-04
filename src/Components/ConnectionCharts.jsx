@@ -127,10 +127,6 @@ const ConnectionCharts = ({ connections }) => {
 		return <div>No connection data available.</div>;
 	}
 
-	if (!barChartData || !pieChartData) {
-		return <div>Loading charts...</div>;
-	}
-
 	return (
 		<div className="connection-charts">
 			<h2>Connection Analytics</h2>

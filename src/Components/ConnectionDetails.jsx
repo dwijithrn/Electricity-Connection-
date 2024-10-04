@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import "../styles/ConnectionDetails.css";
 
 const ConnectionDetails = ({ connection, onSave, onClose }) => {
+	// state for edited connection
 	const [editedConnection, setEditedConnection] = useState({
 		...connection,
 	});
 
+	// handle submit
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		onSave(editedConnection);
 	};
 
+	// handle input change
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		if (
@@ -32,6 +35,7 @@ const ConnectionDetails = ({ connection, onSave, onClose }) => {
 	};
 
 	return (
+		// form for editing connection details
 		<form onSubmit={handleSubmit} className="connection-details-form">
 			<h2>Edit Connection</h2>
 

@@ -38,6 +38,7 @@ const AddConnectionPage = ({ onAddConnection }) => {
 		}
 	};
 
+	// validating the form
 	const validateForm = () => {
 		if (
 			!newConnection.ID ||
@@ -55,6 +56,7 @@ const AddConnectionPage = ({ onAddConnection }) => {
 		return true;
 	};
 
+	// handling the form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (validateForm()) {
@@ -62,7 +64,7 @@ const AddConnectionPage = ({ onAddConnection }) => {
 			navigate("/");
 		}
 	};
-
+	//handle cancel button
 	const handleCancel = () => {
 		navigate("/");
 	};
