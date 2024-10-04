@@ -7,6 +7,7 @@ const DateRangeFilter = ({
 	endDate,
 	setEndDate,
 }) => {
+	// handle filter
 	const handleFilter = () => {
 		onFilter(startDate, endDate);
 	};
